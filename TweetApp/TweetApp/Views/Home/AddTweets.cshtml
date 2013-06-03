@@ -1,0 +1,32 @@
+﻿@model TweetApp.Models.InputModel
+
+@{
+    ViewBag.Title = "AddTweets";
+}
+
+<h2>Get Tweets for last @System.Configuration.ConfigurationManager.AppSettings["DaysCount"] days</h2>
+@using (Html.BeginForm("AddTweets", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.Label("label","Add twitter accounts separated by comma")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(c => c.InputValues,  new { @class= "wide", @name = "txtInput" } )
+            @Html.ValidationMessageFor(model => model.InputValues)
+        </div>
+        <p>
+            <input type="submit" name="btnSubmit" value="Get Tweets" id="btnSubmit" />
+        </p>
+        <p>
+            <input type="submit" name="btnSubmit" value="Get Tweets In JSon" id="btnSubmitJson" />
+        </p>
+    </fieldset>
+    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

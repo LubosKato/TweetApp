@@ -1,0 +1,44 @@
+﻿@model TweetApp.Models.TweetModelContext
+
+@{
+    Layout = null;
+}
+
+<head>
+    <title></title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <table>
+            @Html.ActionLink("go back", "AddTweets", "Home")
+            @foreach (var model in Model.TweetModels) {      
+                <tr>
+                    <td colspan="2">
+                        <b>Tweets for account : @Html.DisplayFor(modelItem => model.Author) , Tweet count: @Html.DisplayFor(modelItem => model.TweetCount) , Users mentioned count : @Html.DisplayFor(modelItem => model.AccountNameCount)</b>
+                    </td> 
+                </tr>
+                    foreach (var item in model.TweetModelDetails)
+                    {
+                        <tr style="width:140px;border:1px solid black;">
+                            <td style="border:1px solid black;">
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td> 
+                            <td style="width:840px;border:1px solid black;">
+                                @Html.DisplayFor(modelItem => item.Text)
+                            </td> 
+                        </tr>  
+                        }                   
+            }
+        </table>
+    </div>
+</body>
+</html>
