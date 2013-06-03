@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tweetapp by kejto</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Tweetapp</h1>
+        <p>Get tweets for accounts in 'x' days MVC4, NUnit, Windsor IoC, TweetSharp, Rhino Mocks</p>
+
+        <p class="view"><a href="https://github.com/kejto/TweetApp">View the Project on GitHub <small>kejto/TweetApp</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/kejto/TweetApp/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kejto/TweetApp/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kejto/TweetApp">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><strong>Implementation</strong></p>
+
+<ol>
+<li><p>Connect to the Twitter API (you will need a dev account for this)</p></li>
+<li><p>Get a list of all tweets from the last two weeks for the following three twitter accounts: 
+@pay_by_phone, <a href="https://github.com/PayByPhone" class="user-mention">@PayByPhone</a>, @PayByPhone_UK</p></li>
+<li><p>Return the list in a json formatted response: sorted by time, with item data: twitter account, tweet, tweet date and time</p></li>
+<li><p>Provide the following aggregate information in the response as well:</p></li>
+</ol><p>a. Total number of tweets per account for the two week period</p>
+
+<p>b. Total number of times another user was mentioned in tweets, per account for the two week period</p>
+
+<p><strong>Requirements</strong></p>
+
+<p>You are free to use any development environment, tools, and resources that you see fit. Your solution should, however, fulfill the following requirements:</p>
+
+<p>• Use C# and the .NET framework (which version is up to you)</p>
+
+<p>• Create a web application, using an MVC or REST framework</p>
+
+<p>• Provide a UAT test that exercises the result, as well as the original source code for both</p>
+
+<p>• Focus on SOLID, unit tests, and code organization</p>
+
+<p>• Code quality will be evaluated as if it were ready for release to production.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/kejto">kejto</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
