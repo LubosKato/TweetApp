@@ -9,8 +9,8 @@ namespace TweetApp.Helpers
     {
         internal static int AccountNameCount(this string text)
         {
-            var remailRegex = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", RegexOptions.IgnoreCase);;
-            text = remailRegex.Replace(text, string.Empty);
+            var emailRegex = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", RegexOptions.IgnoreCase);;
+            text = emailRegex.Replace(text, string.Empty);
             MatchCollection matches = Regex.Matches(text, @"@(\w+)");
             return matches.Count;
         }

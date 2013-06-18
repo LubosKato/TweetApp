@@ -47,7 +47,7 @@ namespace TweetApp.Models
             get { return tweets; }
         }
 
-        public string GitTweetsJson
+        public string GetTweetsJson
         {
             get { return new JavaScriptSerializer().Serialize(tweets); }
         }
