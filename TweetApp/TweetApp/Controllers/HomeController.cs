@@ -53,7 +53,7 @@ namespace TweetApp.Controllers
             catch (TimeoutException)
             {
                 if (Logger != null)
-                    Logger.ErrorFormat("Twitter service timeout !");
+                    Logger.WarnFormat("Twitter service timeout !");
                 return View("Timeout");
             }
             catch (Exception ex)
@@ -69,7 +69,7 @@ namespace TweetApp.Controllers
                 {
                     case "Get Tweets":
                         return (RedirectToAction("Index"));
-                    case "Get Tweets In JSon":
+                    case "Get Tweets In JSON":
                         return (RedirectToAction("IndexJson"));
                     default:
                         return (View("AddTweets"));

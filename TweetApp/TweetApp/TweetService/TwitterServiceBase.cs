@@ -37,23 +37,12 @@ namespace TweetApp.TweetService
         {
             if(account == null || string.IsNullOrEmpty(account))
                 return new List<TwitterStatus>();
-            try
-            {
-                var accountOptions = new ListTweetsOnUserTimelineOptions { ScreenName = account, Count = TweetsCount };
-                IAsyncResult asyncresult = twitterService.BeginListTweetsOnUserTimeline(accountOptions);
-                var result = twitterService.EndListTweetsOnHomeTimeline(asyncresult, TimeOut);
-                if (!asyncresult.IsCompleted)
-                    throw new TimeoutException();
-                return result == null ? new List<TwitterStatus>() : result.ToList();
-            }
-            catch (TimeoutException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var accountOptions = new ListTweetsOnUserTimelineOptions { ScreenName = account, Count = TweetsCount };
+            IAsyncResult asyncresult = twitterService.BeginListTweetsOnUserTimeline(accountOptions);
+            var result = twitterService.EndListTweetsOnHomeTimeline(asyncresult, TimeOut);
+            if (!asyncresult.IsCompleted)
+                throw new TimeoutException();
+            return result == null ? new List<TwitterStatus>() : result.ToList();
         }
 
         #endregion

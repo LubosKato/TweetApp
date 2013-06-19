@@ -78,45 +78,34 @@ namespace TweetApp.Models
         internal void DownloadTweetsInternal(List<string> tweetAccounts)
         {
             Tweets.TweetModels = new List<TweetModel>();
-            try
+            foreach (string account in tweetAccounts)
             {
-                foreach (string account in tweetAccounts)
+                int accountNamesCount = 0;
+                var tweetsInList = twitterService.GetTweetsFromServiceAsync(account);
+                if (tweetsInList != null && tweetsInList.Count > 0)
                 {
-                    int accountNamesCount = 0;
-                    var tweetsInList = twitterService.GetTweetsFromServiceAsync(account);
-                    if (tweetsInList != null && tweetsInList.Count > 0)
+                    var tweetModel = new TweetModel();
+                    var tweetModelDetails = new List<TweetModelDetails>();
+                    foreach (TwitterStatus tweet in tweetsInList)
                     {
-                        var tweetModel = new TweetModel();
-                        var tweetModelDetails = new List<TweetModelDetails>();
-                        foreach (TwitterStatus tweet in tweetsInList)
+                        var totalDays = (DateTime.Now - tweet.CreatedDate).TotalDays;
+                        if (totalDays < DaysCount)
                         {
-                            var totalDays = (DateTime.Now - tweet.CreatedDate).TotalDays;
-                            if (totalDays < DaysCount)
-                            {
-                                tweetModelDetails.Add(new TweetModelDetails
-                                                          {
-                                                              CreatedDate = tweet.CreatedDate,
-                                                              Text = tweet.Text,
-                                                          });
-                                accountNamesCount += tweet.Text.AccountNameCount();
-                            }
+                            tweetModelDetails.Add(new TweetModelDetails
+                                                      {
+                                                          CreatedDate = tweet.CreatedDate,
+                                                          Text = tweet.Text,
+                                                      });
+                            accountNamesCount += tweet.Text.AccountNameCount();
                         }
-                        tweetModelDetails.Sort((y, x) => -1*DateTime.Compare(y.CreatedDate, x.CreatedDate));
-                        tweetModel.TweetModelDetails = tweetModelDetails;
-                        tweetModel.Author = account;
-                        tweetModel.TweetCount = tweetModelDetails.Count;
-                        tweetModel.AccountNameCount = accountNamesCount;
-                        Tweets.TweetModels.Add(tweetModel);
                     }
+                    tweetModelDetails.Sort((y, x) => -1*DateTime.Compare(y.CreatedDate, x.CreatedDate));
+                    tweetModel.TweetModelDetails = tweetModelDetails;
+                    tweetModel.Author = account;
+                    tweetModel.TweetCount = tweetModelDetails.Count;
+                    tweetModel.AccountNameCount = accountNamesCount;
+                    Tweets.TweetModels.Add(tweetModel);
                 }
-            }
-            catch (TimeoutException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
         }
 
