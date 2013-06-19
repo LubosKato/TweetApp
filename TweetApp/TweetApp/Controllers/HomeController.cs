@@ -59,7 +59,7 @@ namespace TweetApp.Controllers
             catch (Exception ex)
             {
                 if (Logger != null)
-                    Logger.ErrorFormat("Tweeter app experienced error message: {0}, StackTrace: {1}", ex.Message, ex.StackTrace);
+                    Logger.ErrorFormat("Tweet app experienced unexpected error. Message: {0}, StackTrace: {1}", ex.Message, ex.StackTrace);
                 return View("Error");
             }
             

@@ -42,6 +42,13 @@ namespace TweetApp.Models
         private readonly ITwitterServiceBase twitterService;
         private static readonly TweetModelContext tweets = new TweetModelContext();
 
+        #region constuctor
+        public TweetBase(ITwitterServiceBase twitterService)
+        {
+            this.twitterService = twitterService;
+        }
+        #endregion
+
         public TweetModelContext Tweets
         {
             get { return tweets; }
@@ -50,11 +57,6 @@ namespace TweetApp.Models
         public string GetTweetsJson
         {
             get { return new JavaScriptSerializer().Serialize(tweets); }
-        }
-
-        public TweetBase(ITwitterServiceBase twitterService)
-        {
-            this.twitterService = twitterService;
         }
 
         public bool DownloadTweets(string accounts)
